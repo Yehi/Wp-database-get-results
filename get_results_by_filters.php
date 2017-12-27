@@ -11,6 +11,7 @@ if (!function_exists('get_results_by_filters')) {
 				$get_user_filter = ' ';
 			}
 		}
+		$and_arr = array();
 		if ($and_columns != '') {
 			foreach ( $and_columns as $column ) {
 				$and_arr[] = ' AND ' . $column[0] . " LIKE '%%" . $column[1] . "%%'";
