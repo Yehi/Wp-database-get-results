@@ -30,6 +30,8 @@ if (!function_exists('get_results_by_filters')) {
 				$to_date = date_format($to_date, 'Y-m-d') . " 23:59:59";
 				$gmt_to_date = get_date_from_gmt( date( $to_date, get_option('gmt_offset') ) );
 				$between_results = " AND " . $date_column ." BETWEEN '" . $gmt_from_date . "' AND '" . $gmt_to_date . "'";
+			} else {
+				$between_results = "";
 			}
 			$or_arr[] = $get_user_filter . $column[0] . " LIKE '%%" . $column[1] . "%%'" . implode("", $and_arr) . $between_results;
 		}
@@ -42,6 +44,6 @@ if (!function_exists('get_results_by_filters')) {
 			$sql_results .= 'LIMIT ' . $start_from . ', ' . $num_per_page;
 		}
 		
-		return $wpdb->get_results($wpdb->prepare($sql_results));
+		return $wpdb->get_results($sql_results);
 	}
 }
